@@ -17,7 +17,7 @@ msgid "plugins.generic.badges.displayName"
 msgstr "Módulo de Badges de Altmetrics"
 
 msgid "plugins.generic.badges.description"
-msgstr "Incorpora marcas con altmétricas en la página de los artículos"
+msgstr "Incorpora marcas con altmétricas en la página de los artículos o preprints"
 
 msgid "plugins.generic.badges.manager.settings.description"
 msgstr "Permite mostrar los sellos (badges) con altmetrics de Dimensions, Altmetric.com y PlumX Analytics"
@@ -98,3 +98,16 @@ msgstr "Barra grande"
 
 msgid "plugins.generic.badges.manager.settings.showBlockTitle"
 msgstr "Métrica"
+
+msgid "plugins.generic.badges.manager.settings.position"
+msgstr "Ubicación de los badges"
+
+msgid "plugins.generic.badges.manager.settings.positionDetails"
+msgstr ""
+"El lugar exacto en el que se muestra cada ubicación lo define el tema activo."
+
+msgid "plugins.generic.badges.manager.settings.positionSidebar"
+msgstr "Barra lateral (detalles del envío)"
+
+msgid "plugins.generic.badges.manager.settings.positionMain"
+msgstr "Columna principal"

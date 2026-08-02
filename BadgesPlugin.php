@@ -29,6 +29,24 @@ use PKP\plugins\Hook;
 
 class BadgesPlugin extends GenericPlugin
 {
+    public const POSITION_SIDEBAR = 'sidebar';
+    public const POSITION_MAIN = 'main';
+
+    /**
+     * The hook each application fires for the supported positions. Which
+     * column a hook actually renders in is up to the active theme.
+     */
+    private const POSITION_HOOKS = [
+        'ojs2' => [
+            self::POSITION_SIDEBAR => 'Templates::Article::Details',
+            self::POSITION_MAIN => 'Templates::Article::Main',
+        ],
+        'ops' => [
+            self::POSITION_SIDEBAR => 'Templates::Preprint::Details',
+            self::POSITION_MAIN => 'Templates::Preprint::Main',
+        ],
+    ];
+
     /**
      * Called as a plugin is registered to the registry
      *
@@ -45,9 +63,11 @@ class BadgesPlugin extends GenericPlugin
             return $success;
         }
         if ($success && $this->getEnabled($mainContextId)) {
-            // Insert Badges div
-            Hook::add('Templates::Article::Details', [$this, 'addBadges']);
-            Hook::add('Templates::Preprint::Details', [$this, 'addBadges']);
+            // Both positions are hooked here because the context is not
+            // reliably available yet; addBadges() drops the one not selected.
+            foreach (self::POSITION_HOOKS[Application::getName()] ?? [] as $hookName) {
+                Hook::add($hookName, [$this, 'addBadges']);
+            }
         }
         return $success;
     }
@@ -77,10 +97,20 @@ class BadgesPlugin extends GenericPlugin
         $application = Application::getName();
         $mapAppToVarName = ['ojs2' => 'article', 'ops' => 'preprint'];
 
-        $submission = $smarty->getTemplateVars($mapAppToVarName[$application]);
+        $varName = $mapAppToVarName[$application] ?? null;
+        if (!$varName) {
+            return null;
+        }
+
+        $submission = $smarty->getTemplateVars($varName);
+        if (!$submission) {
+            return null;
+        }
+
+        // An unpublished submission being previewed has no current publication.
         $publication = $submission->getCurrentPublication();
 
-        return $publication->getDoi();
+        return $publication ? $publication->getDoi() : null;
     }
 
     /**
@@ -93,12 +123,31 @@ class BadgesPlugin extends GenericPlugin
     {
         $request = $this->getRequest();
         $context = $request->getContext();
+        if (!$context) {
+            return false;
+        }
+
+        // Every supported position is hooked, so ignore all but the chosen one.
+        $position = $this->getSetting($context->getId(), 'badgesPosition') ?: self::POSITION_SIDEBAR;
+        if ($hookName !== (self::POSITION_HOOKS[Application::getName()][$position] ?? null)) {
+            return false;
+        }
 
         $smarty = & $params[1];
         $output = & $params[2];
 
         $doi = $this->getDoi($smarty);
+        if (!$doi) {
+            return false;
+        }
         $smarty->assign('doi', $doi);
+
+        // Built from the base URL so the stylesheet also resolves on
+        // installations served from a subdirectory.
+        $smarty->assign(
+            'badgesStylesheetUrl',
+            $request->getBaseUrl() . '/' . $this->getPluginPath() . '/styles/badges.css'
+        );
 
         $badgesShowDimensions = $this->getSetting($context->getId(), 'badgesShowDimensions');
         $badgesDimensionsHideWhenEmpty = $this->getSetting($context->getId(), 'badgesDimensionsHideWhenEmpty');

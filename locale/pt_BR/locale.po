@@ -17,10 +17,10 @@ msgid "plugins.generic.badges.displayName"
 msgstr "Plugin de marcas de altmetrics (Badges)"
 
 msgid "plugins.generic.badges.description"
-msgstr "Incorpora marcas com altmétricas na página de artigos"
+msgstr "Incorpora marcas com altmétricas na página de artigos ou preprints"
 
 msgid "plugins.generic.badges.manager.settings.description"
-msgstr "Incorpora marcas com altmétricas na página de artigos"
+msgstr "Incorpora marcas com altmétricas na página de artigos ou preprints"
 
 msgid "plugins.generic.badges.settings"
 msgstr "Opções do módulo"
@@ -98,3 +98,16 @@ msgstr "Barra grande"
 
 msgid "plugins.generic.badges.manager.settings.showBlockTitle"
 msgstr "Métricas"
+
+msgid "plugins.generic.badges.manager.settings.position"
+msgstr "Localização dos selos"
+
+msgid "plugins.generic.badges.manager.settings.positionDetails"
+msgstr ""
+"O lugar exato em que cada localização aparece é definido pelo tema ativo."
+
+msgid "plugins.generic.badges.manager.settings.positionSidebar"
+msgstr "Barra lateral (detalhes da submissão)"
+
+msgid "plugins.generic.badges.manager.settings.positionMain"
+msgstr "Coluna principal"

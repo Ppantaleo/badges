@@ -17,7 +17,7 @@ msgid "plugins.generic.badges.displayName"
 msgstr "Altmetrics Badges Plugin"
 
 msgid "plugins.generic.badges.description"
-msgstr "Adds altmetric badges to article page."
+msgstr "Adds altmetric badges to the article or preprint page."
 
 msgid "plugins.generic.badges.manager.settings.description"
 msgstr "Badges plugin settings"
@@ -98,3 +98,16 @@ msgstr "Large bar"
 
 msgid "plugins.generic.badges.manager.settings.showBlockTitle"
 msgstr "Metrics"
+
+msgid "plugins.generic.badges.manager.settings.position"
+msgstr "Badge position"
+
+msgid "plugins.generic.badges.manager.settings.positionDetails"
+msgstr ""
+"Where each position renders on the page is decided by the active theme."
+
+msgid "plugins.generic.badges.manager.settings.positionSidebar"
+msgstr "Sidebar (submission details)"
+
+msgid "plugins.generic.badges.manager.settings.positionMain"
+msgstr "Main column"

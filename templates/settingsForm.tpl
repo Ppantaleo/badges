@@ -68,6 +68,14 @@
             {fbvElement type="radio" value="large-bar" id="badgesAltmetricStyle-large-bar" name="badgesAltmetricStyle" checked=$badgesAltmetricStyle|compare:"large-bar" label="plugins.generic.badges.manager.settings.altmetricBadgeLargeBarStyle"}
         {/fbvFormSection}
 
+        <h3>{translate key="plugins.generic.badges.manager.settings.position"}</h3>
+        <p>{translate key="plugins.generic.badges.manager.settings.positionDetails"}</p>
+
+        {fbvFormSection list=true}
+            {fbvElement type="radio" value="sidebar" id="badgesPosition-sidebar" name="badgesPosition" checked=in_array($badgesPosition, ["sidebar", ""]) label="plugins.generic.badges.manager.settings.positionSidebar"}
+            {fbvElement type="radio" value="main" id="badgesPosition-main" name="badgesPosition" checked=$badgesPosition|compare:"main" label="plugins.generic.badges.manager.settings.positionMain"}
+        {/fbvFormSection}
+
 	{/fbvFormArea}
 
 	{fbvFormButtons}

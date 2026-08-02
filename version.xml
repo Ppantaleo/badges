@@ -17,8 +17,8 @@
 <version>
 	<application>badges</application>
 	<type>plugins.generic</type>
-	<release>1.0.0.0</release>
-	<date>2019-09-13</date>
+	<release>1.1.0.0</release>
+	<date>2026-08-02</date>
 	<lazy-load>1</lazy-load>
 	<class>BadgesPlugin</class>
 </version>

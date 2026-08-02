@@ -1,20 +1,70 @@
-.obj_article_details .sub_item {
-    margin: 1.25rem 0;
+/**
+ * plugins/generic/badges/styles/badges.css
+ *
+ * Everything is scoped to the plugin's own container so it applies whatever
+ * the active theme wraps the landing page in: obj_article_details (OJS
+ * default), obj_preprint_details (OPS default) or article-details
+ * (Bootstrap3).
+ */
+
+.badges {
+    /* Shared size: the three providers ship artwork at unrelated sizes, so a
+       single value is what keeps them on one line and equally tall. */
+    --badges-size: 2.75rem;
 }
 
-.altmetric-embed > a > img {
-    width: 100%;
+.badges .badges_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
 }
 
-.altmetric-embed[data-badge-type="donut"] > a > img {
-    width: 50%;
+.badges .sub_item {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    /* Badges are inline images; drop the descender gap so they sit level. */
+    line-height: 0;
 }
 
-.PlumX-Popup .ppp-container.ppp-large > a,
-.PlumX-Popup .ppp-container.ppp-large .plx-print {
-    display: block;
-    width: 6.875rem;
-    height: 6.875rem;
-    margin-top: -1rem;
-    margin-left: -1.75rem;
+/**
+ * Each provider enforces its own dimensions from its own stylesheet, so
+ * !important is what brings the three to a common size.
+ */
+.badges .__dimensions_badge_embed__,
+.badges .__dimensions_Link,
+.badges .__dimensions_Badge,
+.badges .__dimensions_Badge_Image,
+.badges .__dimensions_Badge_Image > svg,
+.badges .altmetric-embed,
+.badges .altmetric-embed > a,
+.badges .altmetric-embed > a > img,
+.badges .PlumX-Popup .plx-wrapping-print-link {
+    width: var(--badges-size) !important;
+    height: var(--badges-size) !important;
+    min-width: 0 !important;
+}
+
+/**
+ * PlumX wraps its icon in a 120x120 box with the icon pinned to the top and
+ * centred with a margin, which stretched the whole row and left the badge out
+ * of line with the other two. Collapse the box onto the icon instead.
+ */
+.badges .PlumX-Popup,
+.badges .PlumX-Popup .ppp-container {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+}
+
+.badges .PlumX-Popup .plx-wrapping-print-link {
+    margin: 0 !important;
+}
+
+.badges .PlumX-Popup .plx-print,
+.badges .PlumX-Popup .plx-print > svg {
+    width: 100% !important;
+    height: 100% !important;
 }

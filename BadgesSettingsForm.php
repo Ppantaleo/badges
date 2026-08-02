@@ -34,7 +34,8 @@ class BadgesSettingsForm extends Form
         'badgesAltmetricHideWhenEmpty' => 'string',
         'badgesPlumxHideWhenEmpty' => 'string',
         'badgesDimensionsStyle' => 'string',
-        'badgesAltmetricStyle' => 'string'
+        'badgesAltmetricStyle' => 'string',
+        'badgesPosition' => 'string'
     ];
 
     /** @var int */
